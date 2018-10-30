@@ -30,21 +30,19 @@
             <div class="paid"><p>Receipt Paid successfully</p></div>
             <div class="receipt">
             <div class="paper">
-              <div class="title">Review</div>
+              <div class="title">Your Meal</div>
               <div class="date">Pick Up: Nov 13, 1:30pm</div>    
               <table>
                 <tbody>
                   <tr><td id="amountMealsText">0 x Beef with Rice</td><td id="priceMealText" class="right">$7</td></tr>
                   <tr></tr>
 
-                  <tr><td colspan="2" class="center"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="payWithPayPal()">
+                  <tr><td colspan="2" class="center"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return payWithPayPal();">
                   <input type="hidden" name="cmd" value="_s-xclick">
                   <input type="hidden" name="hosted_button_id" value="<?php echo $button_id; ?>">
                   <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                   </form></td></tr>
-
-                  <tr><td colspan="2" class="center"><a style="cursor:pointer" onclick="payWithCash()"><b><i class="fa fa"></i> Pay With Cash</b></a></td></tr>
+                  <tr><td colspan="2" class="center"><a style="cursor:pointer; color:#00874C" onclick="return payWithCash();"><b><img src=" https://i.imgur.com/Wf5gRuS.png" width="16" align="top"> Pay With Cash</b></a></td></tr>
 
                   <!--<tr><td colspan="2" class="center"><a><input style="background-image:url(https://i.imgur.com/kPbzDE1.png); background-color:#005587;"type="button" value="Pay Now With Credit Card" onclick="payWithPayPal()"/></a></td></tr>-->
                   <!--<tr><td colspan="2" class="center"><a><input type="button" value="Pay With Cash" onclick="payWithCash()"/></td></a></tr>-->
@@ -60,57 +58,27 @@
           </div>
         </div>
     <script>
-      function randomString(length, chars) {
-        var result = '';
-        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-        return result;
-      }
-
-      function saveReservation(customerName, mealName, numberReservations, paymentMethod){
-        var today = new Date();
-        var day = (today.getDate() < 10) ? '0'+today.getDate() : today.getDate();
-        var month = today.getMonth()+1;//(today.getMonth()+1 < 10) ? today.getMonth()+1 : toString(today.getMonth()+1);
-        var year = today.getFullYear();
-        today = month+'/'+day+'/'+year;
-        var dateReservation = today;
-        
-        var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-
-        //Save JSON of string
-        firebase.database().ref("Client Reservations/" + customerName+"/"+ mealName + "/").set({
-          reservationCode,
-          customerName,
-          numberReservations,
-          paymentMethod,
-          dateReservation
-        }).then((data) => {
-          createCookie("reservationCode", reservationCode);
-          document.location.href="./?ly=success";
-        }).catch((error) => {
-          console.log("error", error)
-        })
-      }
 
       function payWithPayPal() {
-        //MUDAR AQUI DPS QUE O IGOR ADICIONAR O PAYPAL
         if(readCookie("userDisplayName") != null) {
-          saveReservation(readCookie("userDisplayName"), readCookie("mealName"), parseInt(readCookie("reservationAmount")), "PayPal (paid)");
-          //document.location.href="./receipt.html";
+          createCookie("paymentMethod", "PayPal (paid)", 1);
+          return true;
         }
         else {
-          window.alert("An Error has occured. Please log in and try again.");
-          document.location.href="./index.html";
+          swall("An Error has occured.", "Please login and try again.", "error");
+          return false;
         }  
       }
 
       function payWithCash() {
         if(readCookie("userDisplayName") != null) {
-          saveReservation(readCookie("userDisplayName"), readCookie("mealName"), parseInt(readCookie("reservationAmount")), "Cash (collect)");
-          //document.location.href="./receipt.html";
+          createCookie("paymentMethod", "Cash (collect)", 1);
+          document.location.href="./?ly=success";
+          return true;
         }
         else {
-          window.alert("An Error has occured. Please log in and try again.");
-          document.location.href="./index.html";
+          swall("An Error has occured.", "Please login and try again.", "error");
+          return false;
         }
       }
 
@@ -177,7 +145,7 @@
     }
     .title
     {
-      color:#00773D;
+      color:#D45954;
       margin-top:20px;
       margin-left:10px;
       font-weight:bold;
@@ -187,7 +155,7 @@
     }
     .date
     {
-      color:#00773D;
+      color:#D45954;
       margin-top:20px;
       margin-right:10px;
       font-weight:lighter;
