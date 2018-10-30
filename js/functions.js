@@ -110,6 +110,38 @@ function signInGoogle() {
   });  
 }
 
+function randomString(length, chars) {
+  var result = '';
+  for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+  return result;
+}
+
+function saveReservation(customerName, mealName, numberReservations, paymentMethod){
+  var today = new Date();
+  var day = (today.getDate() < 10) ? '0'+today.getDate() : today.getDate();
+  var month = today.getMonth()+1;//(today.getMonth()+1 < 10) ? today.getMonth()+1 : toString(today.getMonth()+1);
+  var year = today.getFullYear();
+  today = month+'/'+day+'/'+year;
+  var dateReservation = today;
+  
+  var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+  //Save JSON of string
+  firebase.database().ref("Client Reservations/" + customerName+"/"+ mealName + "/").set({
+    reservationCode,
+    customerName,
+    numberReservations,
+    paymentMethod,
+    dateReservation
+  }).then((data) => {
+    createCookie("reservationCode", reservationCode);
+    document.getElementById("reservationCode").innerHTML= readCookie("reservationCode");
+  }).catch((error) => {
+    swall("Something went wrong.","Please try again later.","error");
+    console.log("error", error);
+  })
+}
+
 $(document).ready(function() {
   $('#toggle').on('click', function() {
    $(this).toggleClass('active');
@@ -118,6 +150,8 @@ $(document).ready(function() {
 
   $('.swipes').flickity({
     cellAlign: 'center',
-    draggable: true
+    draggable: true,
+    cellSelector: '.carousel-cell',
+    adaptiveHeight: true,
   });
 });

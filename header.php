@@ -35,7 +35,7 @@
         </nav>
       </div>
 
-        <div style="text-align:center; padding-top:25px; color: #fff; font-size: 50; font-family: zulia, sans-serif"><a href="index.php">Mealy</a></div>
+        <div style="text-align:center; padding-top:25px; color: #fff;"><a style="font-size: 50; font-family: zulia, sans-serif;" href="index.php">Mealy</a><br><small style="position: relative; top: -20px;">Daily Meals at Delicious price</small></div>
 
       <div class="button_login">
           <a style="display:none" id="signInStatusText"></a>

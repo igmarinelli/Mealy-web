@@ -34,7 +34,7 @@
               <div class="date">Pick Up: Nov 13, 1:30pm</div>    
               <table>
                 <tbody>
-                  <tr><td id="amountMealsText">0 x Beef with Rice</td><td id="priceMealText" class="right">$7</td></tr>
+                  <tr><td id="amountMealsText">1 x Meal</td><td id="priceMealText" class="right">$6.99</td></tr>
                   <tr></tr>
 
                   <tr><td colspan="2" class="center"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return payWithPayPal();">
@@ -51,7 +51,7 @@
               </table>
               <div class="sign center">
                 <div class="thankyou">
-                Daily Meals at Delicious Price
+                Your Meal Will Be Confirmed After Payment
                 </div>
               </div>
             </div>

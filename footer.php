@@ -1,4 +1,6 @@
+		<p style="text-align: center; color:#fff;"><small>© Copyright 2018 - Mealy - Daily meals at delicious price - All rights reserved.</small></p><br>
 		</div>
+
 	  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 	  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		<!-- BEGIN JIVOSITE CODE {literal} -->

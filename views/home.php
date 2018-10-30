@@ -8,6 +8,7 @@
 </div>
 <br>
   <div class="swipes">
+    <div class="static-banner static-banner1">The Airbnb of Food</div>
     <div class="carousel-cell">
       <div style="flex: 2">
         <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
@@ -15,7 +16,7 @@
       <div style="flex: 2">
         <div style="color: #fff; font-size: 40; text-align: center">Mealy Thursday Special<br><small style="position: relative; top: -5px;"><s>$12</s></small> $7.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
-          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Day and Location:</b><br><a id="dateLocStand" href="https://www.google.com/maps/place/Lower+Sproul+Plaza/@37.8691297,-122.2605928,19.23z/data=!4m8!1m2!2m1!1ssproul+plaza!3m4!1s0x80857c26064003d7:0x103b6908aeacf56a!8m2!3d37.8691454!4d-122.2602313" target=_blank><i class="fa fa-map-marker"></i> Sproul Plaza, Nov 1st @ 12-2:00 p.m.</a></div><br>
+          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> Thursday, Nov 1st, 12-2pm <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> Sproul Plaza, UCB <i class="fa fa-map-marker"></i></a></div><br>
         </div>
       </div>
       <div style="flex: 2">
@@ -37,8 +38,20 @@
 
     </div>
   </div>
+  <br><br><br><br>
 
-  <script>
+  <div class="funfact countdown" style="max-width:450px;">
+    <h2>Did You Know...?</h2>
+    <p>The average price a Cal student pay for a meal is $11.<br>We are here to make food Affordable!</p><br>
+  </div>
+
+  <br><br><br>
+
+  <div class="funfact">
+    <h2 style="font-size: 2em; color:#fff">Follow Us on Social Media: <a href="https://www.facebook.com/Mealy.me/" target="_blank"><img src="https://d1jgln4w9al398.cloudfront.net/site/2.1.238-20181023.22/css/images/ico_facebook.png" width="32"></a></h2>
+  </div>
+
+  <script type="text/javascript">
 
   const second = 1000,
         minute = second * 60,
