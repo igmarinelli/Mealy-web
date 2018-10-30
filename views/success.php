@@ -11,7 +11,7 @@
             Have a nice meal!
             </div>
           </div>
-          <a href="./index.html"><h4 style="color:#fff"><u>Go to Home →</u></h4></a>
+          <a href="./index.php"><h4 style="color:#fff"><u>Go to Home →</u></h4></a>
         </div>
           <div style="flex: 8;">
             <div class="text">

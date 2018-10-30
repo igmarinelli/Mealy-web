@@ -77,7 +77,12 @@ swal("Are you sure you want to Logout?", {
 		  firebase.auth().signOut().then(function() {
 		    swal("You signed out succesfully.", {
 		      icon: "success",
-		    });
+        });
+        eraseCookie("mealPrice");
+        eraseCookie("reservationAmount");
+        // Sign-out successful.
+        changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), false);  
+        changeReserveButton($("#reserveButtonVegan"),$("#cancelReservationButtonVegan"), false);
 		  }).catch(function(error) {
 		    // An error happened.
 		    var errorCode = error.code;
@@ -101,12 +106,12 @@ function signInGoogle() {
     var firstName = result.additionalUserInfo.profile.given_name;
     firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Beef With Rice").once("value", function(snapshot) {
       if(snapshot.exists()) {
-        changeReserveButton($("reserveButton"), $("cancelReservationButton"),true);
+        changeReserveButton($("#reserveButton"), $("#cancelReservationButton"),true);
       }
     });
     firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Falafel With Vegetables").once("value", function(snapshot) {
       if(snapshot.exists()) {
-        changeReserveButton($("reserveButtonVegan"), $("cancelReservationButtonVegan"),true);
+        changeReserveButton($("#reserveButtonVegan"), $("#cancelReservationButtonVegan"),true);
       }
     });
   }).catch(function(error) {

@@ -11,7 +11,7 @@
         </div>
       </div>
       <div style="flex: 2">
-        <a onclick="checkLogin()" id="reserveButton" class="bt1"><button>Reserve Now!</button></a>
+        <a class="bt1"><button id="reserveButton" onclick="checkLogin()">Reserve Now!</button></a>
             <div style="flex-direction: row; justify-content: center">
               <a ><button disabled class="astext" onclick="cancelReservation(false)" id="cancelReservationButton" style="margin-top:25; color: #00f; font-size: 15;">Cancel Reservation</button></a>
             </div>
@@ -115,21 +115,55 @@
           //$("#reserveButton").fadeOut('fast');
           cancelButton.fadeOut('fast');
           var firstName = readCookie("userDisplayName").split(' ')[0];
-          reserveButton[0].innerHTML =  firstName+ "'s Reservation (click for details):<br/><small><i>Your reservation will be ready for pickup in 00:00:00" + "</i></small>";
-          reserveButton[0].onclick = function() { displayDetails("Beef With Rice")};   
+          reserveButton[0].setAttribute("style", "font-size: 15");
+          reserveButton[0].innerHTML = "Your meal will be ready in <br> in 00:00:00";
+          reserveButton.attr("onclick","displayDetails(\"Beef With Rice\")"); //"displayDetails(\"Beef With Rice\")");
           cancelButton[0].disabled=false;
 
           wait(1000);
           reserveButton.fadeIn('fast');
           //$("#reserveButton").fadeIn('fast');
           cancelButton.fadeIn('fast');
-          setTime(reserveButton);
+
+          var countDownDate = new Date("Nov 1, 2018 12:00:00").getTime();
+          var x = setInterval(function() {
+            if(document.getElementById("reserveButton").innerHTML=="Reserve Now!") {
+              clearInterval(x);
+            }
+            else {
+              // Get todays date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = countDownDate - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              hours+=days*24;
+              var strHours = (hours < 10) ? "0"+hours : ""+hours;
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var strMinutes = (minutes < 10) ? "0"+minutes : ""+minutes;
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+              var strSeconds = (seconds < 10) ? "0"+seconds : ""+seconds;
+
+              // Display the result in the element with id="demo"
+              document.getElementById("reserveButton").innerHTML = "Your meal will be ready in <br>" + strHours + "h " + strMinutes + "m " + strSeconds + "s";
+
+              // If the count down is finished, write some text 
+              if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("reserveButton").innerHTML = "YOUR RESERVATION IS READY FOR PICKUP!";
+              }
+            }
+          }, 1000);
+          //setTime(reserveButton);
         }
         else {
           reserveButton.fadeOut('fast');
           cancelButton.fadeOut('fast');
           reserveButton[0].innerHTML =  "Reserve Now!";
-          reserveButton[0].onclick = checkLogin;  
+          reserveButton.attr("onclick","checkLogin()");
           cancelButton[0].disabled=true;
           wait(1000);
           reserveButton.fadeIn('fast');
@@ -153,28 +187,6 @@
         while(end < start + ms) {
           end = new Date().getTime();
         }
-      }
-
-      function setTime(reserveButton) {
-        var today = new Date();
-        var reservationDay = reservationDate.split('/')[0];
-        var reservationMonth = reservationDate.split('/')[1];
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        var firstName = readCookie("userDisplayName").split(' ')[0];
-        if(reserveButton[0].innerHTML!="Reserve Now!" && reserveButton[0].innerHTML!="Reserve Now! (Vegan)")
-          reserveButton[0].innerHTML =  firstName+ "'s Reservation (click for details):<br/><small>Your reservation will be ready for pickup in " + h + ":" + m + ":" + s + "</small>";
-        h + ":" + m + ":" + s;
-        var t = setTimeout(function() {
-          setTime(reserveButton);
-        }, 500);
-      }
-      function checkTime(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-          return i;
       }
 
   </script>
