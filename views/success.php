@@ -8,7 +8,7 @@
             <a id="reservationCode"> 0123456789 </a>
             <br/>
             <div class="thankyou">
-            Have a nice meal!
+            Have a nice Meal!
             </div>
           </div>
           <a href="./index.php"><h4 style="color:#fff"><u>Go to Home →</u></h4></a>
@@ -49,13 +49,21 @@
     window.onload = function() {
       //SEND CONFIRMATION EMAIL.
       document.getElementById("reservationCode").innerHTML= readCookie("reservationCode");
+      $.ajax({
+        type: "POST",
+        url: "../app/mail.php",
+        success: function(){
+          console.log("email sent hihi");
+            //$('.success').fadeIn(1000);
+        }
+      });
     }
     </script>
     <style>
     @import url("https://fonts.googleapis.com/css?family=Comfortaa:700|Roboto:900|Russo+One");
     .barcode
     {
-        height: 10px;
+      height: 10px;
       width: 0;
       box-shadow:1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434, 11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434, 22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434, 30px 0 0 1px #343434, 35px 0 0 1px #343434, 37px 0 0 1px #343434, 41px 0 0 1px #343434, 44px 0 0 1px #343434, 47px 0 0 1px #343434, 51px 0 0 1px #343434, 56px 0 0 1px #343434, 59px 0 0 1px #343434, 64px 0 0 1px #343434, 68px 0 0 1px #343434, 72px 0 0 1px #343434, 74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
       display:inline-block;
