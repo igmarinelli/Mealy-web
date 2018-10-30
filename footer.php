@@ -1,7 +1,6 @@
 		</div>
 	  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 	  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
 		<!-- BEGIN JIVOSITE CODE {literal} -->
 		<script type='text/javascript'>
 		(function(){ var widget_id = 'HGTyGf1cE6';var d=document;var w=window;function l(){

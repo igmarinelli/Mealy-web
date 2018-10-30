@@ -13,6 +13,8 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-database.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
   </head>
   <body>
     <div class=container>
@@ -33,7 +35,7 @@
         </nav>
       </div>
 
-        <div style="text-align:center; padding-top:25; color: #fff; font-size: 50; font-family: zulia, sans-serif"><a href="index.php">Mealy</a></div>
+        <div style="text-align:center; padding-top:25px; color: #fff; font-size: 50; font-family: zulia, sans-serif"><a href="index.php">Mealy</a></div>
 
       <div class="button_login">
           <a style="display:none" id="signInStatusText"></a>

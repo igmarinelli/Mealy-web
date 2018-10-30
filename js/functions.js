@@ -1,13 +1,5 @@
 var shouldShowReservationAlert = false;
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyAUVQHHfT0hOfO81nD4YZpAZnlzF9LAwck",
-  authDomain: "californiafoodapp.firebaseapp.com",
-  databaseURL: "https://californiafoodapp.firebaseio.com",
-  projectId: "californiafoodapp",
-  storageBucket: "californiafoodapp.appspot.com",
-};
-firebase.initializeApp(config);
 
 function createCookie(name,value,days) {
   if (days) {
@@ -98,9 +90,6 @@ function signInGoogle() {
     provider.addScope('profile');
     provider.addScope('email');
     provider.addScope('https://www.googleapis.com/auth/plus.me');
-    provider.setCustomParameters({
-      'login_hint': 'user@mealy.com'
-    });
 
   firebase.auth().signInWithPopup(provider).then(function(result) {
     var firstName = result.additionalUserInfo.profile.given_name;

@@ -1,11 +1,19 @@
-
+<div id="countdown" class="countdown">
+  <h1><i>Reserve until Wednesday</i></h1>
+  <ul>
+    <li><span id="hours"></span>Hours</li>
+    <li><span id="minutes"></span>Minutes</li>
+    <li><span id="seconds"></span>Seconds</li>
+  </ul>
+</div>
+<br>
   <div class="swipes">
     <div class="carousel-cell">
       <div style="flex: 2">
         <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
       </div>
       <div style="flex: 2">
-        <div style="color: #fff; font-size: 40; text-align: center">Italian Chicken Tenders with White Rice<br><small style="position: relative; top: -5px;"><s>$10</s></small> $6.99</div>
+        <div style="color: #fff; font-size: 40; text-align: center">Mealy Thursday Special<br><small style="position: relative; top: -5px;"><s>$12</s></small> $7.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
           <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Day and Location:</b><br><a id="dateLocStand" href="https://www.google.com/maps/place/Lower+Sproul+Plaza/@37.8691297,-122.2605928,19.23z/data=!4m8!1m2!2m1!1ssproul+plaza!3m4!1s0x80857c26064003d7:0x103b6908aeacf56a!8m2!3d37.8691454!4d-122.2602313" target=_blank><i class="fa fa-map-marker"></i> Sproul Plaza, Nov 1st @ 12-2:00 p.m.</a></div><br>
         </div>
@@ -31,13 +39,55 @@
   </div>
 
   <script>
+
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let countDown = new Date('Oct 31, 2018 18:00:00').getTime(),
+      x = setInterval(function() {
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+          document.getElementById('hours').innerText = Math.floor(distance / (hour)),
+          document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+          document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+        
+        //do something later when date is reached
+        //if (distance < 0) {
+        //  clearInterval(x);
+        //  'IT'S MY BIRTHDAY!;
+        //}
+
+      }, second);
+
       reservationDate = "10/11";
 
       function callReservationPrompt(mealName) {
-        var amountInput = prompt("Please enter number of reservations for "+readCookie("userDisplayName")+":", "max. 5");
-        if(amountInput != null) {
-          checkAmountInput(amountInput, mealName);
-        }
+        swal({
+          title: 'Please enter how many Meals:',
+          content: {
+            element: "input",
+            attributes: {
+              placeholder: "Type a number",
+              type: "number",
+              max: "5",
+            },
+          },
+          icon: "success",
+          button: {
+            text: "Next",
+          },
+        })
+        .then(amountInput => {
+          if (!amountInput) throw null;
+         
+          if(amountInput != null) {
+            checkAmountInput(amountInput, mealName);
+          }
+        })
       }
 
       function checkLogin() {
@@ -64,8 +114,7 @@
         }
 
         else {
-          window.alert("Please enter a valid number (MAX. 5).");
-          callReservationPrompt(mealName);
+          swal({text: "Please enter a valid number (MAXIMUM OF 5)", icon: "error"}).then(results => {callReservationPrompt(mealName)});
         }
 
       }
