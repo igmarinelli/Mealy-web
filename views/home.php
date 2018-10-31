@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="carousel-cell">
-      <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
+      <img style="width:300; margin-bottom:-10px" src="https://i.imgur.com/BUk7nSx.png" />
 
           <div style="flex: 2">
             <a><button onclick="checkLogin()" id="reserveButtonVegan" style="font-size: 25;>Reserve Now! (Vegan)</button></a>
@@ -78,7 +78,7 @@
         hour = minute * 60,
         day = hour * 24;
 
-  let countDown = new Date('Oct 31, 2018 18:00:00').getTime(),
+  let countDown = new Date('Oct 31, 2018 23:00:00').getTime(),
       x = setInterval(function() {
 
         let now = new Date().getTime(),
