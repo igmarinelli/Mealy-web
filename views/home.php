@@ -28,17 +28,27 @@
             </div>
       </div>
     </div>
+
     <div class="carousel-cell">
-      <img style="width:300; margin-bottom:-10px" src="https://i.imgur.com/BUk7nSx.png" />
-
-          <div style="flex: 2">
-            <a><button onclick="checkLogin()" id="reserveButtonVegan" style="font-size: 25;>Reserve Now! (Vegan)</button></a>
+    <a class="modal__trigger" data-modal="#modal2">
+      <div style="flex: 2">
+        <center><img style="width:300; margin-bottom:-10px" src="https://i.imgur.com/BUk7nSx.png" /></center>
+      </div>
+    </a>
+      <div style="flex: 2">
+        <div class="mealtitle">Homemade Vegan Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
+        <div style="flex-direction: row; justify-content: center"><br>
+          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> <i class="fa fa-map-marker"></i></a></div><br>
+        </div>
+      </div>
+      <div style="flex: 2">
+        <a class="bt1"><button id="reserveButtonVegan" onclick="" style="opacity:0.6;">Coming Soon</button></a>
             <div style="flex-direction: row; justify-content: center">
-              <a ><button disabled class="astext" onclick="cancelReservation(true)" id="cancelReservationButtonVegan" style="margin-top:25; color: #00f; font-size: 15;">Cancel Reservation</button></a>
+              <a ><button disabled class="astext" onclick="cancelReservation(false)" id="cancelReservationButton" style="margin-top:25; color: #00f; font-size: 15;"></button></a>
             </div>
-          </div>
-
+      </div>
     </div>
+  </div>
 
   <br><br><br><br>
 
@@ -70,6 +80,22 @@
     </div>
   </div>
 
+<!-- Modal -->
+  <div id="modal2" class="modal modal__bg" role="dialog" aria-hidden="true">
+    <div class="modal__dialog">
+      <div class="modal__content">
+        <img src="https://i.imgur.com/TZUyX6i.png" class="img-responsive">
+        <h1>Homemade Vegan Special</h1>
+        <p>Coming Soon.</p>
+        
+        <!-- modal close button -->
+        <a href="" class="modal__close demo-close">
+          <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"/><path d="M0 0h24v24h-24z" fill="none"/></svg>
+        </a>
+        
+      </div>
+    </div>
+  </div>
 
   <script type="text/javascript">
 
@@ -104,7 +130,7 @@
           content: {
             element: "input",
             attributes: {
-              placeholder: "Type a number (e.g. 2)",
+              placeholder: "Type a number (e.g. 1)",
               type: "number",
               max: "5",
             },
@@ -206,9 +232,10 @@
           //$("#reserveButton").fadeOut('fast');
           cancelButton.fadeOut('fast');
           var firstName = readCookie("userDisplayName").split(' ')[0];
-          reserveButton[0].setAttribute("style", "font-size: 15");
-          reserveButton[0].innerHTML = "Your meal will be ready in <br> in 00:00:00";
+          //reserveButton[0].setAttribute("style", "font-size: 15");
+          reserveButton[0].innerHTML = "Pickup in 00:00:00";
           reserveButton.attr("onclick","displayDetails(\"Homemade Thursday Special\")"); //"displayDetails(\"Homemade Thursday Special\")");
+
           cancelButton[0].disabled=false;
 
           wait(1000);
@@ -239,7 +266,7 @@
               var strSeconds = (seconds < 10) ? "0"+seconds : ""+seconds;
 
               // Display the result in the element with id="demo"
-              document.getElementById("reserveButton").innerHTML = "Your meal will be ready in <br>" + strHours + "h " + strMinutes + "m " + strSeconds + "s";
+              document.getElementById("reserveButton").innerHTML = "Pickup in " + strHours + "h " + strMinutes + "m " + strSeconds + "s";
 
               // If the count down is finished, write some text 
               if (distance < 0) {

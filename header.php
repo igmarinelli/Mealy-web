@@ -2,9 +2,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/mealy-icon.png">
+    <link rel="shortcut icon" href="img/favicon.png">
     <title>Mealy | Daily meals at delicious price</title>
-    <meta property="og:image" content="https://i.imgur.com/NPQsI65.png">
+    <meta property="og:image" content="img/mealy-og.png">
     <meta property="description" content="Mealy is a platform that provides high quality and affordable meals for students.">
     <link href="css/style.css?v=1.1" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
