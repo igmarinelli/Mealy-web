@@ -10,11 +10,13 @@
   <div class="swipes">
     <div class="static-banner static-banner1">The Airbnb of Food</div>
     <div class="carousel-cell">
+    <a class="modal__trigger" data-modal="#modal">
       <div style="flex: 2">
-        <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
+        <center><img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" /></center>
       </div>
+    </a>
       <div style="flex: 2">
-        <div style="color: #fff; font-size: 40; text-align: center">Mealy Thursday Special<br><small style="position: relative; top: -5px;"><s>$12</s></small> $7.99</div>
+        <div style="color: #fff; font-size: 40; text-align: center">Homemade Thursday Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
           <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> Thursday, Nov 1st, 12-2pm <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> Sproul Plaza, UCB <i class="fa fa-map-marker"></i></a></div><br>
         </div>
@@ -30,14 +32,14 @@
       <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
 
           <div style="flex: 2">
-            <a><button onclick="checkLogin()" id="reserveButtonVegan" style="font-size: 25; font-family:'Times New Roman', Times, serif">Reserve Now! (Vegan)</button></a>
+            <a><button onclick="checkLogin()" id="reserveButtonVegan" style="font-size: 25;>Reserve Now! (Vegan)</button></a>
             <div style="flex-direction: row; justify-content: center">
               <a ><button disabled class="astext" onclick="cancelReservation(true)" id="cancelReservationButtonVegan" style="margin-top:25; color: #00f; font-size: 15;">Cancel Reservation</button></a>
             </div>
           </div>
 
     </div>
-  </div>
+
   <br><br><br><br>
 
   <div class="funfact countdown" style="max-width:450px;">
@@ -47,9 +49,27 @@
 
   <br><br><br>
 
-  <div class="funfact">
+  <div class="funfact" style="padding:10px">
     <h2 style="font-size: 2em; color:#fff">Follow Us on Social Media: <a href="https://www.facebook.com/Mealy.me/" target="_blank"><img src="https://d1jgln4w9al398.cloudfront.net/site/2.1.238-20181023.22/css/images/ico_facebook.png" width="32"></a></h2>
   </div>
+
+<!-- Modal -->
+  <div id="modal" class="modal modal__bg" role="dialog" aria-hidden="true">
+    <div class="modal__dialog">
+      <div class="modal__content">
+        <img src="https://i.imgur.com/A5pqvJe.png" class="img-responsive">
+        <h1>Homemade Thursday Special</h1>
+        <p>Lemon and pepper chicken breast, vegetables on the wok in a combo with rice. Your perfect daily option.</p>
+        
+        <!-- modal close button -->
+        <a href="" class="modal__close demo-close">
+          <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"/><path d="M0 0h24v24h-24z" fill="none"/></svg>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+
 
   <script type="text/javascript">
 
@@ -252,3 +272,4 @@
       }
 
   </script>
+  <script type="text/javascript" src="./js/modal.js"></script>
