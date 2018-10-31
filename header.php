@@ -6,7 +6,7 @@
     <title>Mealy | Daily meals at delicious price</title>
     <meta property="og:image" content="https://i.imgur.com/NPQsI65.png">
     <meta property="description" content="Mealy is a platform that provides high quality and affordable meals for students.">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=1.1" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
@@ -35,7 +35,7 @@
         </nav>
       </div>
 
-        <div style="text-align:center; padding-top:25px; color: #fff; font-size: 50; font-family: zulia, sans-serif"><a href="index.php">Mealy</a></div>
+        <div style="text-align:center; padding-top:25px; color: #fff;"><a style="font-size: 50; font-family: zulia, sans-serif;" href="index.php">Mealy</a><br><small style="position: relative; top: -20px;">Daily meals at delicious price</small></div>
 
       <div class="button_login">
           <a style="display:none" id="signInStatusText"></a>

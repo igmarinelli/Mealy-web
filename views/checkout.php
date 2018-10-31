@@ -34,7 +34,7 @@
               <div class="date">Pick Up: Nov 13, 1:30pm</div>    
               <table>
                 <tbody>
-                  <tr><td id="amountMealsText">0 x Beef with Rice</td><td id="priceMealText" class="right">$7</td></tr>
+                  <tr><td id="amountMealsText">1 x Meal</td><td id="priceMealText" class="right">$7.99</td></tr>
                   <tr></tr>
 
                   <tr><td colspan="2" class="center"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return payWithPayPal();">
@@ -42,7 +42,7 @@
                   <input type="hidden" name="hosted_button_id" value="<?php echo $button_id; ?>">
                   <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                   </form></td></tr>
-                  <tr><td colspan="2" class="center"><a style="cursor:pointer; color:#00874C" onclick="return payWithCash();"><b><img src=" https://i.imgur.com/Wf5gRuS.png" width="16" align="top"> Pay With Cash</b></a></td></tr>
+                  <tr><td colspan="2" class="center"><!--<a style="cursor:pointer; color:#00874C" onclick="return payWithCash();"><b><img src=" https://i.imgur.com/Wf5gRuS.png" width="16" align="top"> Pay With Cash</b></a></td>--></tr>
 
                   <!--<tr><td colspan="2" class="center"><a><input style="background-image:url(https://i.imgur.com/kPbzDE1.png); background-color:#005587;"type="button" value="Pay Now With Credit Card" onclick="payWithPayPal()"/></a></td></tr>-->
                   <!--<tr><td colspan="2" class="center"><a><input type="button" value="Pay With Cash" onclick="payWithCash()"/></td></a></tr>-->
@@ -51,7 +51,7 @@
               </table>
               <div class="sign center">
                 <div class="thankyou">
-                Daily Meals at Delicious Price
+                Your Meal Will Be Confirmed After Payment
                 </div>
               </div>
             </div>

@@ -58,44 +58,6 @@
           </div>
         </div>
     <script>
-
-    function randomString(length, chars) {
-      var result = '';
-      for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-      return result;
-    }
-
-
-    function saveReservation(customerName, mealName, numberReservations, paymentMethod, reservationCode){
-      var today = new Date();
-      var day = (today.getDate() < 10) ? '0'+today.getDate() : today.getDate();
-      var month = today.getMonth()+1;//(today.getMonth()+1 < 10) ? today.getMonth()+1 : toString(today.getMonth()+1);
-      var year = today.getFullYear();
-      today = month+'/'+day+'/'+year;
-      var dateReservation = today;
-
-      //Save JSON of string
-      firebase.database().ref("Client Reservations/" + customerName+"/"+ mealName + "/").set({
-        reservationCode,
-        customerName,
-        numberReservations,
-        paymentMethod,
-        dateReservation
-      }).then((data) => {
-        createCookie("reservationCode", reservationCode);
-        firebase.database().ref("Reservations Available/amount/").transaction(function(amount) {
-          if(amount) {
-            amount = parseInt(amount) - parseInt(readCookie("reservationAmount"));
-          }
-          return amount;
-        });
-      }).catch((error) => {
-        swall("Something went wrong.","Please try again later.","error");
-        console.log("error", error);
-      });
-
-    }
-
     window.onload = function() {
       var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
       console.log(reservationCode);
@@ -108,15 +70,6 @@
           document.getElementById("reservationCode").innerHTML= reservationCode;
         }
       });
-      //SEND CONFIRMATION EMAIL.
-      /*$.ajax({
-        type: "POST",
-        url: "../app/mail.php",
-        success: function(){
-          console.log("email sent hihi");
-            //$('.success').fadeIn(1000);
-        }
-      });*/
     }
     </script>
     <style>

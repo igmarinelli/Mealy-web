@@ -8,14 +8,17 @@
 </div>
 <br>
   <div class="swipes">
+    <div class="static-banner static-banner1">The Airbnb of Food</div>
     <div class="carousel-cell">
+    <a class="modal__trigger" data-modal="#modal">
       <div style="flex: 2">
-        <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
+        <center><img style="width:300; margin-bottom:-10px" src="https://i.imgur.com/v23cFQ8.png" /></center>
       </div>
+    </a>
       <div style="flex: 2">
-        <div style="color: #fff; font-size: 40; text-align: center">Mealy Thursday Special<br><small style="position: relative; top: -5px;"><s>$12</s></small> $7.99</div>
+        <div class="mealtitle">Homemade Thursday Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
-          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Day and Location:</b><br><a id="dateLocStand" href="https://www.google.com/maps/place/Lower+Sproul+Plaza/@37.8691297,-122.2605928,19.23z/data=!4m8!1m2!2m1!1ssproul+plaza!3m4!1s0x80857c26064003d7:0x103b6908aeacf56a!8m2!3d37.8691454!4d-122.2602313" target=_blank><i class="fa fa-map-marker"></i> Sproul Plaza, Nov 1st @ 12-2:00 p.m.</a></div><br>
+          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> Thursday, Nov 1st, 12-2pm <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> Sproul Plaza, UCB <i class="fa fa-map-marker"></i></a></div><br>
         </div>
       </div>
       <div style="flex: 2">
@@ -26,26 +29,56 @@
       </div>
     </div>
     <div class="carousel-cell">
-      <img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" />
+      <img style="width:300; margin-bottom:-10px" src="https://i.imgur.com/BUk7nSx.png" />
 
           <div style="flex: 2">
-            <a><button onclick="checkLogin()" id="reserveButtonVegan" style="font-size: 25; font-family:'Times New Roman', Times, serif">Reserve Now! (Vegan)</button></a>
+            <a><button onclick="checkLogin()" id="reserveButtonVegan" style="font-size: 25;>Reserve Now! (Vegan)</button></a>
             <div style="flex-direction: row; justify-content: center">
               <a ><button disabled class="astext" onclick="cancelReservation(true)" id="cancelReservationButtonVegan" style="margin-top:25; color: #00f; font-size: 15;">Cancel Reservation</button></a>
             </div>
           </div>
 
     </div>
+
+  <br><br><br><br>
+
+  <div class="funfact countdown" style="max-width:450px;">
+    <h2>Did You Know...?</h2>
+    <p>The average price a Cal student pay for a meal is $11.<br>We are here to make food Affordable!</p><br>
   </div>
 
-  <script>
+  <br><br><br>
+
+  <div class="funfact" style="padding:10px">
+    <h2 style="font-size: 2em; color:#fff" class="h21">Follow Us on Social Media: <a href="https://www.facebook.com/Mealy.me/" target="_blank"><img src="https://d1jgln4w9al398.cloudfront.net/site/2.1.238-20181023.22/css/images/ico_facebook.png" width="32"></a></h2>
+  </div>
+
+<!-- Modal -->
+  <div id="modal" class="modal modal__bg" role="dialog" aria-hidden="true">
+    <div class="modal__dialog">
+      <div class="modal__content">
+        <img src="https://i.imgur.com/A5pqvJe.png" class="img-responsive">
+        <h1>Homemade Thursday Special</h1>
+        <p>Lemon and pepper chicken breast, vegetables on the wok in a combo with rice. Your perfect daily option.</p>
+        
+        <!-- modal close button -->
+        <a href="" class="modal__close demo-close">
+          <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"/><path d="M0 0h24v24h-24z" fill="none"/></svg>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
 
   const second = 1000,
         minute = second * 60,
         hour = minute * 60,
         day = hour * 24;
 
-  let countDown = new Date('Oct 31, 2018 18:00:00').getTime(),
+  let countDown = new Date('Oct 31, 2018 23:00:00').getTime(),
       x = setInterval(function() {
 
         let now = new Date().getTime(),
@@ -269,3 +302,4 @@
       }
 
   </script>
+  <script type="text/javascript" src="./js/modal.js"></script>
