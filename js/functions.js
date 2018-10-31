@@ -31,6 +31,20 @@ function eraseCookie(name) {
   createCookie(name,"",-1);
 }
 
+function checkLogin() {
+  if(readCookie("userDisplayName") == null) {
+    eraseCookie("loggedIn");  
+  }
+  if(readCookie("loggedIn") == null || readCookie("loggedIn") == false) {
+    shouldShowReservationAlert = true;
+    signInGoogle();
+  }
+  else {
+    var mealName = (window.event.target.id == "reserveButton") ? "Beef With Rice" : "Falafel With Vegetables";
+    callReservationPrompt(mealName);
+  }
+}
+
 firebase.auth().onAuthStateChanged(function(user) {
   //window.user = user; // user is undefined if no user signed in
   if(user) {
@@ -42,11 +56,14 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("signInOutButton").innerHTML = "Sign Out";
     document.getElementById("signInOutButton").setAttribute("onClick", "signOutGoogle();");
     if(shouldShowReservationAlert) {
-      var amountInput = prompt("Please enter number of reservations for "+readCookie("userDisplayName")+":", "e.g. 1");
-      if(amountInput != null) {
-        checkAmountInput(amountInput);
-      }
+      checkLogin();
     }
+    var userDisplayName = readCookie("userDisplayName");
+    var userEmail = readCookie("userEmail");
+    firebase.database().ref("ALL Users/" + readCookie("userDisplayName") + "/").set({
+      userDisplayName,
+      userEmail  
+    });
   }
   else {
     eraseCookie("loggedIn");
@@ -93,16 +110,25 @@ function signInGoogle() {
 
   firebase.auth().signInWithPopup(provider).then(function(result) {
     var firstName = result.additionalUserInfo.profile.given_name;
-    firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Beef With Rice").once("value", function(snapshot) {
-      if(snapshot.exists()) {
-        changeReserveButton($("#reserveButton"), $("#cancelReservationButton"),true);
+    firebase.database().ref("Reservations Available/amount/").once("value", function(amount) {
+      if(amount.exists() && amount.node_.value_ > 0) {
+        firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Beef With Rice").once("value", function(snapshot) {
+          if(snapshot.exists()) {
+            changeReserveButton($("#reserveButton"), $("#cancelReservationButton"),true);
+          }
+        });
+        /*firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Falafel With Vegetables").once("value", function(snapshot) {
+          if(snapshot.exists()) {
+            changeReserveButton($("#reserveButtonVegan"), $("#cancelReservationButtonVegan"),true);
+          }
+        });*/
       }
-    });
-    firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Falafel With Vegetables").once("value", function(snapshot) {
-      if(snapshot.exists()) {
-        changeReserveButton($("#reserveButtonVegan"), $("#cancelReservationButtonVegan"),true);
+      else {
+        shouldShowReservationAlert=false;
+        changeReserveButtonUnavailable($("#reserveButton"), $("#cancelReservationButton"));
       }
-    });
+      return amount;
+    }); 
   }).catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;

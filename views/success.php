@@ -5,11 +5,23 @@
           <div class="sign center" style="background:#fff; padding:30px">
             <div class="barcode"></div>
             <br/>
-            <a id="reservationCode"> 0123456789 </a>
+            <a id="reservationCode"> </a>
             <br/>
             <div class="thankyou">
-            Have a nice meal!
+            Have a nice Meal!
             </div>
+            <div class="container2">
+            <div class="tab"></div>
+            <div class="receipt">
+            <div class="paper">
+              <div class="sign center">
+                <div class="thankyou">
+                Daily Meals at Delicious Price
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
           </div>
           <a href="./index.php"><h4 style="color:#fff"><u>Go to Home →</u></h4></a>
         </div>
@@ -46,18 +58,25 @@
           </div>
         </div>
     <script>
-
     window.onload = function() {
-      //SEND CONFIRMATION EMAIL.
-      saveReservation(readCookie("userDisplayName"), readCookie("mealName"), parseInt(readCookie("reservationAmount")), readCookie("paymentMethod"));
-      document.getElementById("reservationCode").innerHTML= readCookie("reservationCode");
+      var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      console.log(reservationCode);
+      firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/" + readCookie("mealName")).once("value", function(snapshot) {
+        if(snapshot.exists()) {
+          document.getElementById("reservationCode").innerHTML= readCookie("reservationCode"); 
+        }
+        else {
+          saveReservation(readCookie("userDisplayName"), readCookie("mealName"), parseInt(readCookie("reservationAmount")), readCookie("paymentMethod"), reservationCode);
+          document.getElementById("reservationCode").innerHTML= reservationCode;
+        }
+      });
     }
     </script>
     <style>
     @import url("https://fonts.googleapis.com/css?family=Comfortaa:700|Roboto:900|Russo+One");
     .barcode
     {
-        height: 10px;
+      height: 10px;
       width: 0;
       box-shadow:1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434, 11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434, 22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434, 30px 0 0 1px #343434, 35px 0 0 1px #343434, 37px 0 0 1px #343434, 41px 0 0 1px #343434, 44px 0 0 1px #343434, 47px 0 0 1px #343434, 51px 0 0 1px #343434, 56px 0 0 1px #343434, 59px 0 0 1px #343434, 64px 0 0 1px #343434, 68px 0 0 1px #343434, 72px 0 0 1px #343434, 74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
       display:inline-block;
