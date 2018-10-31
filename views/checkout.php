@@ -31,7 +31,7 @@
             <div class="receipt">
             <div class="paper">
               <div class="title">Your Meal</div>
-              <div class="date">Pick Up: Nov 13, 1:30pm</div>    
+              <div class="date">Pick Up: Nov 1st, 12-2pm</div>    
               <table>
                 <tbody>
                   <tr><td id="amountMealsText">1 x Meal</td><td id="priceMealText" class="right">$7.99</td></tr>

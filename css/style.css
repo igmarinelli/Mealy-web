@@ -237,7 +237,7 @@
 
 .carousel-cell {
   min-width: 50%;
-  min-height: 550px;
+  min-height: 600px;
   overflow: auto;
   display:flex;
   flex-direction: column;
@@ -447,7 +447,7 @@
     font-size: 2em;
   }
   .funfact p {
-    font-size:1.4em;
+    font-size:1.35em;
   }
   .h21 {
     font-size: 1.5em !important;

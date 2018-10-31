@@ -38,7 +38,7 @@
       <div style="flex: 2">
         <div class="mealtitle">Homemade Vegan Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
-          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> <i class="fa fa-map-marker"></i></a></div><br>
+          <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> <i class="fa fa-clock-o"></i><br><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> <i class="fa fa-map-marker"></i></a><br></div><br>
         </div>
       </div>
       <div style="flex: 2">
@@ -54,7 +54,7 @@
 
   <div class="funfact countdown" style="max-width:450px;">
     <h2>Did You Know...?</h2>
-    <p>The average price a Cal student pay for a meal is $11.<br>We are here to make food Affordable!</p><br>
+    <p>The average price a Cal student pays for a meal is $11.<br>We are here to make food Affordable!</p><br>
   </div>
 
   <br><br><br>

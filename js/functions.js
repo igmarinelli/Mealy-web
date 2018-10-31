@@ -40,7 +40,7 @@ function checkLogin() {
     signInGoogle();
   }
   else {
-    var mealName = (window.event.target.id == "reserveButton") ? "Homemade Thursday Special" : "Falafel With Vegetables";
+    var mealName = "Homemade Thursday Special";
     callReservationPrompt(mealName);
   }
 }
