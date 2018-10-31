@@ -152,6 +152,5 @@ $(document).ready(function() {
     cellAlign: 'center',
     draggable: true,
     cellSelector: '.carousel-cell',
-    adaptiveHeight: true,
   });
 });

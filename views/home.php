@@ -12,11 +12,11 @@
     <div class="carousel-cell">
     <a class="modal__trigger" data-modal="#modal">
       <div style="flex: 2">
-        <center><img style="width:300; margin-top:-30px; margin-bottom:-30px" src="./img/meal1.png" /></center>
+        <center><img style="width:300; margin-bottom:-10px" src="https://i.imgur.com/v23cFQ8.png" /></center>
       </div>
     </a>
       <div style="flex: 2">
-        <div style="color: #fff; font-size: 40; text-align: center">Homemade Thursday Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
+        <div class="mealtitle">Homemade Thursday Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
           <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> Thursday, Nov 1st, 12-2pm <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> Sproul Plaza, UCB <i class="fa fa-map-marker"></i></a></div><br>
         </div>
@@ -50,7 +50,7 @@
   <br><br><br>
 
   <div class="funfact" style="padding:10px">
-    <h2 style="font-size: 2em; color:#fff">Follow Us on Social Media: <a href="https://www.facebook.com/Mealy.me/" target="_blank"><img src="https://d1jgln4w9al398.cloudfront.net/site/2.1.238-20181023.22/css/images/ico_facebook.png" width="32"></a></h2>
+    <h2 style="font-size: 2em; color:#fff" class="h21">Follow Us on Social Media: <a href="https://www.facebook.com/Mealy.me/" target="_blank"><img src="https://d1jgln4w9al398.cloudfront.net/site/2.1.238-20181023.22/css/images/ico_facebook.png" width="32"></a></h2>
   </div>
 
 <!-- Modal -->
