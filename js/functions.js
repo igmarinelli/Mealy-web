@@ -40,7 +40,7 @@ function checkLogin() {
     signInGoogle();
   }
   else {
-    var mealName = (window.event.target.id == "reserveButton") ? "Beef With Rice" : "Falafel With Vegetables";
+    var mealName = (window.event.target.id == "reserveButton") ? "Homemade Thursday Special" : "Falafel With Vegetables";
     callReservationPrompt(mealName);
   }
 }
@@ -112,7 +112,7 @@ function signInGoogle() {
     var firstName = result.additionalUserInfo.profile.given_name;
     firebase.database().ref("Reservations Available/amount/").once("value", function(amount) {
       if(amount.exists() && amount.node_.value_ > 0) {
-        firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Beef With Rice").once("value", function(snapshot) {
+        firebase.database().ref("Client Reservations/" + result.additionalUserInfo.profile.given_name + " " + result.additionalUserInfo.profile.family_name + "/Homemade Thursday Special").once("value", function(snapshot) {
           if(snapshot.exists()) {
             changeReserveButton($("#reserveButton"), $("#cancelReservationButton"),true);
           }
@@ -142,16 +142,13 @@ function randomString(length, chars) {
   return result;
 }
 
-function saveReservation(customerName, mealName, numberReservations, paymentMethod){
+function saveReservation(customerName, mealName, numberReservations, paymentMethod, reservationCode){
   var today = new Date();
   var day = (today.getDate() < 10) ? '0'+today.getDate() : today.getDate();
   var month = today.getMonth()+1;//(today.getMonth()+1 < 10) ? today.getMonth()+1 : toString(today.getMonth()+1);
   var year = today.getFullYear();
   today = month+'/'+day+'/'+year;
   var dateReservation = today;
-  
-  var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-
   //Save JSON of string
   firebase.database().ref("Client Reservations/" + customerName+"/"+ mealName + "/").set({
     reservationCode,
@@ -161,11 +158,16 @@ function saveReservation(customerName, mealName, numberReservations, paymentMeth
     dateReservation
   }).then((data) => {
     createCookie("reservationCode", reservationCode);
-    document.getElementById("reservationCode").innerHTML= readCookie("reservationCode");
+    firebase.database().ref("Reservations Available/amount/").transaction(function(amount) {
+      if(amount) {
+        amount = parseInt(amount) - parseInt(readCookie("reservationAmount"));
+      }
+      return amount;
+    });
   }).catch((error) => {
     swall("Something went wrong.","Please try again later.","error");
     console.log("error", error);
-  })
+  });
 }
 
 $(document).ready(function() {

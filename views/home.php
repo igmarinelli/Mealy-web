@@ -128,7 +128,7 @@
           //Redirect to Checkout Screen
           //Save to firebase!!!!
           createCookie("reservationAmount", input, 1);
-          createCookie("mealPrice", 7, 1);
+          createCookie("mealPrice", 7.99, 1);
           createCookie("mealName", mealName, 1);
           document.location.href = "./?ly=checkout";
         }
@@ -145,7 +145,7 @@
         if(readCookie("loggedIn") == "true") {
           firebase.database().ref("Reservations Available/amount/").once("value", function(amount) {
             if(amount.exists() && amount.node_.value_ > 0) {
-              firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/Beef With Rice").once("value", function(snapshot) {
+              firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/Homemade Thursday Special").once("value", function(snapshot) {
                 if(snapshot.exists()) {
                   changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), true);
                 }
@@ -165,7 +165,7 @@
       };
 
       function cancelReservation(isVegan) {
-        var mealName = isVegan ? "Falafel With Vegetables" : "Beef With Rice";
+        var mealName = isVegan ? "Falafel With Vegetables" : "Homemade Thursday Special";
         firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/" + mealName).once("value", function(snapshot) {
             if(snapshot.exists() && snapshot.val().paymentMethod == "Cash (collect)") {
               var confirm = window.confirm("Are you sure you want to cancel your current reservation?");
@@ -178,7 +178,7 @@
                   }
                   return amount;
                 });
-                if(mealName == "Beef With Rice") {
+                if(mealName == "Homemade Thursday Special") {
                   firebase.database().ref("Reservations Available/").once("value", function(amount) {
                     if(amount.exists() && amount.val().amount > 0) {
                       changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), false); 
@@ -208,7 +208,7 @@
           var firstName = readCookie("userDisplayName").split(' ')[0];
           reserveButton[0].setAttribute("style", "font-size: 15");
           reserveButton[0].innerHTML = "Your meal will be ready in <br> in 00:00:00";
-          reserveButton.attr("onclick","displayDetails(\"Beef With Rice\")"); //"displayDetails(\"Beef With Rice\")");
+          reserveButton.attr("onclick","displayDetails(\"Homemade Thursday Special\")"); //"displayDetails(\"Homemade Thursday Special\")");
           cancelButton[0].disabled=false;
 
           wait(1000);
