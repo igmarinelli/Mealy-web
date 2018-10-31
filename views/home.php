@@ -21,7 +21,7 @@
       <div style="flex: 2">
         <a class="bt1"><button id="reserveButton" onclick="checkLogin()">Reserve Now!</button></a>
             <div style="flex-direction: row; justify-content: center">
-              <a ><button disabled class="astext" onclick="cancelReservation(false)" id="cancelReservationButton" style="margin-top:25; color: #00f; font-size: 15;">Cancel Reservation</button></a>
+              <a ><button disabled class="astext" onclick="cancelReservation(false)" id="cancelReservationButton" style="margin-top:25; color: #00f; font-size: 15;"></button></a>
             </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
           content: {
             element: "input",
             attributes: {
-              placeholder: "Type a number",
+              placeholder: "Type a number (e.g. 2)",
               type: "number",
               max: "5",
             },
@@ -88,19 +88,6 @@
             checkAmountInput(amountInput, mealName);
           }
         })
-      }
-
-      function checkLogin() {
-        if(readCookie("userDisplayName") == null) {
-          eraseCookie("loggedIn");  
-        }
-        if(readCookie("loggedIn") == null || readCookie("loggedIn") == false) {
-          signInGoogle();
-        }
-        else {
-          var mealName = (window.event.target.id == "reserveButton") ? "Beef With Rice" : "Falafel With Vegetables";
-          callReservationPrompt(mealName);
-        }
       }
 
       function checkAmountInput(input, mealName) {
@@ -123,15 +110,23 @@
         $("#cancelReservationButton").fadeOut('fast');
         $("#cancelReservationButtonVegan").fadeOut('fast');
         if(readCookie("loggedIn") == "true") {
-          firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/Beef With Rice").once("value", function(snapshot) {
-            if(snapshot.exists()) {
-              changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), true);
+          firebase.database().ref("Reservations Available/amount/").once("value", function(amount) {
+            if(amount.exists() && amount.node_.value_ > 0) {
+              firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/Beef With Rice").once("value", function(snapshot) {
+                if(snapshot.exists()) {
+                  changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), true);
+                }
+              });
+              /*firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/Falafel With Vegetables").once("value", function(snapshot) {
+                if(snapshot.exists()) {
+                  changeReserveButton($("#reserveButtonVegan"), $("#cancelReservationButtonVegan"), true);
+                }
+              });*/
             }
-          });
-          firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/Falafel With Vegetables").once("value", function(snapshot) {
-            if(snapshot.exists()) {
-              changeReserveButton($("#reserveButtonVegan"), $("#cancelReservationButtonVegan"), true);
+            else {
+              changeReserveButtonUnavailable($("#reserveButton"), $("#cancelReservationButton"));
             }
+            return amount;
           });
         }
       };
@@ -144,8 +139,22 @@
               if (confirm) {
                 firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/" + mealName).remove();
                 alert("Your reservation was cancelled.");
+                firebase.database().ref("Reservations Available/amount/").transaction(function(amount) {
+                  if(amount) {
+                    amount = parseInt(amount) + parseInt(readCookie("reservationAmount"));
+                  }
+                  return amount;
+                });
                 if(mealName == "Beef With Rice") {
-                  changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), false);  
+                  firebase.database().ref("Reservations Available/").once("value", function(amount) {
+                    if(amount.exists() && amount.val().amount > 0) {
+                      changeReserveButton($("#reserveButton"), $("#cancelReservationButton"), false); 
+                    }
+                    else {
+                      changeReserveButtonUnavailable($("#reserveButton"), $("#cancelReservationButton"));
+                    }
+                    return amount;
+                  }); 
                 }
                 else {
                   changeReserveButton($("#reserveButtonVegan"), $("#cancelReservationButtonVegan"), false);  
@@ -176,7 +185,7 @@
 
           var countDownDate = new Date("Nov 1, 2018 12:00:00").getTime();
           var x = setInterval(function() {
-            if(document.getElementById("reserveButton").innerHTML=="Reserve Now!") {
+            if(document.getElementById("reserveButton").innerHTML=="Reserve Now!" || document.getElementById("reserveButton").innerHTML=="SOLD OUT!<br><small>(Click for Details)</small>") {
               clearInterval(x);
             }
             else {
@@ -217,6 +226,27 @@
           wait(1000);
           reserveButton.fadeIn('fast');
         }
+      }
+
+      function addToNewsletter() {
+          var subscribe = window.confirm("All our reservations are sold out. Would you like to be notified when more become available?");
+          if(subscribe) {
+            var email = readCookie("userEmail");
+            firebase.database().ref("Newsletter/" + readCookie("userDisplayName") + "/").set({
+              email
+            });
+            window.alert("Thank you! We will inform you when more meals become available!");
+          }
+        };
+
+      function changeReserveButtonUnavailable(reserveButton, cancelButton) {
+        reserveButton.fadeOut('fast');
+        cancelButton.fadeOut('fast');
+        cancelButton[0].disabled=true;
+        reserveButton[0].innerHTML = "SOLD OUT!<br><small>(Click for Details)</small>";
+        reserveButton.attr("onclick", "addToNewsletter()");
+        wait(1000);
+        reserveButton.fadeIn('fast');
       }
 
       function displayDetails(mealName) {

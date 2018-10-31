@@ -5,11 +5,23 @@
           <div class="sign center" style="background:#fff; padding:30px">
             <div class="barcode"></div>
             <br/>
-            <a id="reservationCode"> 0123456789 </a>
+            <a id="reservationCode"> </a>
             <br/>
             <div class="thankyou">
             Have a nice Meal!
             </div>
+            <div class="container2">
+            <div class="tab"></div>
+            <div class="receipt">
+            <div class="paper">
+              <div class="sign center">
+                <div class="thankyou">
+                Daily Meals at Delicious Price
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
           </div>
           <a href="./index.php"><h4 style="color:#fff"><u>Go to Home →</u></h4></a>
         </div>
@@ -53,15 +65,14 @@
       return result;
     }
 
-    function saveReservation(customerName, mealName, numberReservations, paymentMethod){
+
+    function saveReservation(customerName, mealName, numberReservations, paymentMethod, reservationCode){
       var today = new Date();
       var day = (today.getDate() < 10) ? '0'+today.getDate() : today.getDate();
       var month = today.getMonth()+1;//(today.getMonth()+1 < 10) ? today.getMonth()+1 : toString(today.getMonth()+1);
       var year = today.getFullYear();
       today = month+'/'+day+'/'+year;
       var dateReservation = today;
-      
-      var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
       //Save JSON of string
       firebase.database().ref("Client Reservations/" + customerName+"/"+ mealName + "/").set({
@@ -72,25 +83,40 @@
         dateReservation
       }).then((data) => {
         createCookie("reservationCode", reservationCode);
+        firebase.database().ref("Reservations Available/amount/").transaction(function(amount) {
+          if(amount) {
+            amount = parseInt(amount) - parseInt(readCookie("reservationAmount"));
+          }
+          return amount;
+        });
       }).catch((error) => {
         swall("Something went wrong.","Please try again later.","error");
         console.log("error", error);
-      })
+      });
+
     }
 
-    saveReservation(readCookie("userDisplayName"), readCookie("mealName"), parseInt(readCookie("reservationAmount")), readCookie("paymentMethod"));
-
     window.onload = function() {
+      var reservationCode = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      console.log(reservationCode);
+      firebase.database().ref("Client Reservations/" + readCookie("userDisplayName") + "/" + readCookie("mealName")).once("value", function(snapshot) {
+        if(snapshot.exists()) {
+          document.getElementById("reservationCode").innerHTML= readCookie("reservationCode"); 
+        }
+        else {
+          saveReservation(readCookie("userDisplayName"), readCookie("mealName"), parseInt(readCookie("reservationAmount")), readCookie("paymentMethod"), reservationCode);
+          document.getElementById("reservationCode").innerHTML= reservationCode;
+        }
+      });
       //SEND CONFIRMATION EMAIL.
-      document.getElementById("reservationCode").innerHTML= readCookie("reservationCode");
-      $.ajax({
+      /*$.ajax({
         type: "POST",
         url: "../app/mail.php",
         success: function(){
           console.log("email sent hihi");
             //$('.success').fadeIn(1000);
         }
-      });
+      });*/
     }
     </script>
     <style>
