@@ -84,8 +84,8 @@
 
       window.onload = function() {
         document.getElementById("amountMealsText").innerHTML=readCookie("reservationAmount") + " x " + readCookie("mealName");
-        var totalPrice = parseInt(readCookie("mealPrice")) * parseInt(readCookie("reservationAmount"));
-        document.getElementById("priceMealText").innerHTML="$" + totalPrice + ".00";
+        var totalPrice = parseFloat(readCookie("mealPrice")) * parseInt(readCookie("reservationAmount"));
+        document.getElementById("priceMealText").innerHTML="$" + totalPrice;
       };
 
     </script>
