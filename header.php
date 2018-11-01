@@ -1,12 +1,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Mealy | Daily meals at delicious price</title>
     <meta property="og:image" content="https://i.imgur.com/CzK9dGX.png">
     <meta property="description" content="Mealy is a platform that provides high quality and affordable meals for students.">
-    <link href="css/style.css?v=1.1" rel="stylesheet">
+    <link href="css/style.css?v=1.3" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>

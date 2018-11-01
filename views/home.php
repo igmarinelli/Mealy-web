@@ -54,7 +54,7 @@
 
   <div class="funfact countdown" style="max-width:450px;">
     <h2>Did You Know...?</h2>
-    <p>The average price a Cal student pays for a meal is $11.<br>We are here to make food Affordable!</p><br>
+    <p class="mbr">The average price a Cal student pays for a meal is $11.<br> We are here to connect Home Cooks and make food Affordable!</p><br>
   </div>
 
   <br><br><br>
@@ -104,7 +104,7 @@
         hour = minute * 60,
         day = hour * 24;
 
-  let countDown = new Date('Oct 31, 2018 23:00:00').getTime(),
+  let countDown = new Date('Oct 31, 2018 23:59:00').getTime(),
       x = setInterval(function() {
 
         let now = new Date().getTime(),
@@ -135,7 +135,7 @@
               max: "5",
             },
           },
-          icon: "success",
+          //icon: "success",
           button: {
             text: "Next",
           },

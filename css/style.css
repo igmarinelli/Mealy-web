@@ -336,7 +336,7 @@
 
 .funfact p {
   height: 160px;
-  width: 360px;
+  width: 400px;
   max-width: 100%;
   line-height: 150%;
   font-weight: 300;
@@ -460,6 +460,13 @@
   }
   .mealtitle {
     font-size: 35;
+  }
+  .mbr br { content: ' '; }
+}
+
+@media (max-width: 330px) {
+  .funfact p {
+    font-size:1.3em;
   }
 }
 
