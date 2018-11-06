@@ -1,9 +1,9 @@
 <div id="countdown" class="countdown">
-  <h1><i>Reserve until Wednesday</i></h1>
+  <h1><i>Reserve Today, Eat Tomorrow</i></h1>
   <ul>
-    <li><span id="hours"></span>Hours</li>
+    <!--<li><span id="hours"></span>Hours</li>
     <li><span id="minutes"></span>Minutes</li>
-    <li><span id="seconds"></span>Seconds</li>
+    <li><span id="seconds"></span>Seconds</li>-->
   </ul>
 </div>
 <br>
@@ -104,15 +104,15 @@
         hour = minute * 60,
         day = hour * 24;
 
-  let countDown = new Date('Oct 31, 2018 23:59:00').getTime(),
+  let countDown = new Date('Nov 01, 2018 12:00:00').getTime(),
       x = setInterval(function() {
 
         let now = new Date().getTime(),
             distance = countDown - now;
 
-          document.getElementById('hours').innerText = Math.floor(distance / (hour)),
-          document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-          document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+          //document.getElementById('hours').innerText = Math.floor(distance / (hour)),
+          //document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+          //document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
         
         //do something later when date is reached
         //if (distance < 0) {
