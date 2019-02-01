@@ -34,7 +34,7 @@
               <div class="date">Pick Up: Nov 1st, 12-2pm</div>    
               <table>
                 <tbody>
-                  <tr><td id="amountMealsText">1 x Meal</td><td id="priceMealText" class="right">$7.99</td></tr>
+                  <tr><td id="amountMealsText">1 x Meal</td><td id="priceMealText" class="right">$6.99</td></tr>
                   <tr></tr>
 
                   <tr><td colspan="2" class="center"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return payWithPayPal();">

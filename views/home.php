@@ -16,7 +16,7 @@
       </div>
     </a>
       <div style="flex: 2">
-        <div class="mealtitle">Homemade Thursday Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
+        <div class="mealtitle">Homemade Thursday Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $6.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
           <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> Thursday, Nov 1st, 12-2pm <i class="fa fa-clock-o"></i><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> Sproul Plaza, UCB <i class="fa fa-map-marker"></i></a></div><br>
         </div>
@@ -36,7 +36,7 @@
       </div>
     </a>
       <div style="flex: 2">
-        <div class="mealtitle">Homemade Vegan Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $7.99</div>
+        <div class="mealtitle">Homemade Vegan Special<br><small style="position: relative; top: -5px;"><s>$11.99</s></small> $6.99</div>
         <div style="flex-direction: row; justify-content: center"><br>
           <div style="color: #fff; font-size: 20; text-align: center"><b>Pickup Date:</b> <i class="fa fa-clock-o"></i><br><br><b>Pickup Location:</b> <a id="dateLocStand" href="https://goo.gl/maps/RANQjggP3aM2" target="_blank"> <i class="fa fa-map-marker"></i></a><br></div><br>
         </div>
@@ -154,7 +154,7 @@
           //Redirect to Checkout Screen
           //Save to firebase!!!!
           createCookie("reservationAmount", input, 1);
-          createCookie("mealPrice", 7.99, 1);
+          createCookie("mealPrice", 6.99, 1);
           createCookie("mealName", mealName, 1);
           document.location.href = "./?ly=checkout";
         }
